@@ -1,4 +1,3 @@
-
 class Board(object):    # Creates a class that represents the board
 
     def __init__(self, board_width, board_heght):   # Initializes the board with values

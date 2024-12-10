@@ -1,7 +1,7 @@
-import Board
-import UserInput
-import PuckPlacement
-import CheckFourInRow
+import board
+import user_input
+import puck_placement
+import check_four_in_row
 
 class Game(object):
 
@@ -14,20 +14,20 @@ class Game(object):
         board_width = 7
         board_height = 5
 
-        self.board = Board.Board(board_width, board_height)
-        user_input = UserInput.UserInput()
+        self.board = board.Board(board_width, board_height)
+        input = user_input.UserInput()
 
         while True:
             self.board.printBoard()
             while True:
-                puck_x = user_input.getUserInput(board_width)
-                puck_placer = PuckPlacement.PuckPlacement(self.reds_turn, puck_x, self.board.board)
+                puck_x = input.getUserInput(board_width)
+                puck_placer = puck_placement.PuckPlacement(self.reds_turn, puck_x, self.board.board)
                 placementValid = puck_placer.checkIfPlacementValid()
                 if placementValid:
                     puck_y = puck_placer.placePuck()
                     break
             self.pucksPlaced += 1
-            checker = CheckFourInRow.CheckFourInRow(self.reds_turn, puck_x, puck_y, board_width, board_height, self.board.board)
+            checker = check_four_in_row.CheckFourInRow(self.reds_turn, puck_x, puck_y, board_width, board_height, self.board.board)
             amountInRow = checker.checkHorizontal()
             if amountInRow == 4:
                 break
